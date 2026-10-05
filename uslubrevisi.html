@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lalaran 74 Uslub Bahasa Arab</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  color:#fff;
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(0,70,45,.72),rgba(0,35,25,.85)),
+    url("galih.jpg") center/cover fixed no-repeat;
+  overflow-x:hidden;
+}
+
+/* HUJAN */
+#rain{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  overflow:hidden;
+}
+
+.drop{
+  position:absolute;
+  top:-30px;
+  width:2px;
+  height:20px;
+  background:rgba(255,255,255,.38);
+  border-radius:50%;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+  }
+}
+
+/* HATI */
+#hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+}
+
+.heart{
+  position:fixed;
+  font-size:20px;
+  animation:heartFly 1.1s ease-out forwards;
+}
+
+@keyframes heartFly{
+  0%{
+    opacity:1;
+    transform:translate(0,0) scale(.7);
+  }
+  100%{
+    opacity:0;
+    transform:translate(var(--x),-90px) scale(1.5) rotate(20deg);
+  }
+}
+
+.container{
+  position:relative;
+  z-index:5;
+  width:min(1100px,94%);
+  margin:auto;
+}
+
+header{
+  text-align:center;
+  padding:45px 15px 25px;
+}
+
+.logo{
+  width:85px;
+  height:85px;
+  margin:auto;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  background:rgba(255,255,255,.15);
+  border:2px solid rgba(255,255,255,.4);
+  box-shadow:0 8px 30px rgba(0,0,0,.3);
+}
+
+h1{
+  margin-top:18px;
+  font-size:clamp(28px,6vw,50px);
+  text-shadow:0 3px 12px #000;
+}
+
+.subtitle{
+  margin-top:8px;
+  opacity:.9;
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:8px;
+  z-index:50;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin:10px auto 25px;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-weight:bold;
+  padding:11px 17px;
+  border-radius:14px;
+  background:rgba(12,110,75,.85);
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  background:rgba(18,145,95,.95);
+}
+
+.glass{
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.25);
+  backdrop-filter:blur(13px);
+  -webkit-backdrop-filter:blur(13px);
+  border-radius:25px;
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+section{
+  display:none;
+  margin-bottom:30px;
+}
+
+section.active{
+  display:block;
+}
+
+/* HOME */
+.hero{
+  padding:35px 25px;
+  text-align:center;
+}
+
+.hero h2{
+  font-size:30px;
+  margin-bottom:15px;
+}
+
+.hero p{
+  line-height:1.8;
+  opacity:.9;
+}
+
+.big-btn{
+  margin-top:22px;
+  padding:14px 25px;
+  font-size:17px;
+}
+
+/* LALARAN */
+.lalaran{
+  padding:30px 20px;
+  text-align:center;
+}
+
+.counter{
+  font-size:15px;
+  opacity:.8;
+  margin-bottom:18px;
+}
+
+.uslub{
+  direction:rtl;
+  font-family:"Times New Roman",serif;
+  font-size:clamp(30px,7vw,52px);
+  font-weight:bold;
+  line-height:1.7;
+  padding:25px 10px;
+  text-shadow:0 3px 10px #000;
+}
+
+.answer{
+  display:none;
+  margin:15px auto;
+  padding:18px;
+  max-width:700px;
+  background:rgba(0,0,0,.22);
+  border-radius:18px;
+}
+
+.answer.show{
+  display:block;
+  animation:pop .3s ease;
+}
+
+.answer-title{
+  font-size:12px;
+  opacity:.7;
+  margin-bottom:5px;
+}
+
+.answer-text{
+  font-size:25px;
+  font-weight:bold;
+}
+
+.lar-buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
+
+/* MATERI */
+.material-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:16px;
+}
+
+.material-card{
+  padding:22px;
+}
+
+.number{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:rgba(0,0,0,.2);
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.material-title{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.arabic{
+  direction:rtl;
+  font-family:"Times New Roman",serif;
+  font-size:25px;
+  line-height:1.8;
+  margin:10px 0;
+}
+
+.example{
+  direction:rtl;
+  font-family:"Times New Roman",serif;
+  font-size:20px;
+  line-height:1.8;
+  padding:13px;
+  border-radius:15px;
+  background:rgba(0,0,0,.17);
+}
+
+.meaning{
+  margin-top:12px;
+  line-height:1.6;
+  font-style:italic;
+  color:#eafff3;
+}
+
+/* KUIS */
+.quiz{
+  padding:28px 20px;
+}
+
+.quiz-number{
+  text-align:center;
+  opacity:.8;
+}
+
+.quiz-question{
+  text-align:center;
+  margin:18px 0;
+  font-size:19px;
+}
+
+.quiz-arabic{
+  direction:rtl;
+  font-family:"Times New Roman",serif;
+  font-size:28px;
+  line-height:1.8;
+  text-align:center;
+  padding:20px;
+  background:rgba(0,0,0,.18);
+  border-radius:18px;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+
+.option{
+  text-align:left;
+  width:100%;
+  padding:15px;
+  background:rgba(255,255,255,.14);
+}
+
+.option.correct{
+  background:rgba(0,150,80,.8);
+}
+
+.option.wrong{
+  background:rgba(170,40,40,.8);
+}
+
+.quiz-result{
+  text-align:center;
+  margin-top:20px;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.quiz-nav{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+/* MUSIC */
+.music{
+  position:fixed;
+  right:15px;
+  bottom:15px;
+  z-index:100;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px 10px;
+  opacity:.75;
+}
+
+/* ANIMATION */
+@keyframes pop{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+@media(max-width:600px){
+  header{
+    padding-top:30px;
+  }
+
+  .hero{
+    padding:25px 17px;
+  }
+
+  .material-grid{
+    grid-template-columns:1fr;
+  }
+
+  .uslub{
+    font-size:32px;
+  }
+
+  .quiz-arabic{
+    font-size:23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="rain"></div>
+<div id="hearts"></div>
+
+<div class="container">
+
+<header>
+  <div class="logo">📚</div>
+  <h1>لَعَلَّرَان 74 أُسْلُوب</h1>
+  <p class="subtitle">Lalaran Uslub Bahasa Arab</p>
+</header>
+
+<nav>
+  <button onclick="showSection('home')">🏠 Beranda</button>
+  <button onclick="showSection('lalaran')">📖 Lalaran</button>
+  <button onclick="showSection('materi')">📚 Materi</button>
+  <button onclick="showSection('kuis')">📝 Kuis</button>
+  <button onclick="toggleMusic()" id="musicBtn">🎵 Musik</button>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="glass hero">
+    <h2>🌿 Lalaran 74 Uslub Bahasa Arab</h2>
+    <p>
+      Hafalkan uslub Bahasa Arab dengan cara yang lebih menyenangkan.
+      Pilih menu <b>Lalaran</b> untuk menghafal, <b>Materi</b> untuk mempelajari
+      semua contoh, atau <b>Kuis</b> untuk menguji hafalanmu.
+    </p>
+
+    <button class="big-btn" onclick="showSection('lalaran')">
+      🚀 Mulai Lalaran
+    </button>
+  </div>
+</section>
+
+<!-- LALARAN -->
+<section id="lalaran">
+  <div class="glass lalaran">
+
+    <div class="counter" id="larCounter"></div>
+
+    <div class="uslub" id="larUslub"></div>
+
+    <div class="answer" id="larAnswer">
+      <div class="answer-title">JAWABAN</div>
+      <div class="answer-text" id="larAnswerText"></div>
+    </div>
+
+    <button onclick="revealAnswer()" id="revealBtn">
+      👀 Lihat Jawaban
+    </button>
+
+    <div class="lar-buttons">
+      <button onclick="prevLar()">⬅️ Sebelumnya</button>
+      <button onclick="nextLar()">Berikutnya ➡️</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- MATERI -->
+<section id="materi">
+  <div class="material-grid" id="materialGrid"></div>
+</section>
+
+<!-- KUIS -->
+<section id="kuis">
+  <div class="glass quiz">
+
+    <div class="quiz-number" id="quizNumber"></div>
+
+    <div class="quiz-question">
+      Apa arti kalimat di bawah ini?
+    </div>
+
+    <div class="quiz-arabic" id="quizArabic"></div>
+
+    <div class="options" id="options"></div>
+
+    <div class="quiz-result" id="quizResult"></div>
+
+    <div class="quiz-nav">
+      <button onclick="prevQuiz()">⬅️ Sebelumnya</button>
+      <button onclick="nextQuiz()">Berikutnya ➡️</button>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  🌿 Semangat menghafal 74 Uslub Bahasa Arab 🌿
+</footer>
+
+</div>
+
+<audio id="bgMusic" src="lagu.mp3" loop></audio>
+
+<button class="music" onclick="toggleMusic()" id="musicFloating">
+  🎵 Musik
+</button>
+
+<script>
+
+/* =====================================================
+   DATA 74 USLUB
+===================================================== */
+
+const DATA = [
+
+[1,"Agak","بَعْضَ الشَّيْءِ",
+"هَذَا الْبَيْتُ غَالٍ بَعْضَ الشَّيْءِ",
+"Rumah ini agak mahal."],
+
+[2,"Agar","كَيْ",
+"تَعَلَّمِ اللُّغَةَ الْعَرَبِيَّةَ كَيْ تَفْهَمَ الْقُرْآنَ",
+"Belajarlah Bahasa Arab agar Faham Al-Qur'an"],
+
+[3,"Agar Tidak","لِئَلَّا",
+"فَكِّرْ قَبْلَ أَنْ تَتَكَلَّمَ لِئَلَّا تَنْدَمَ",
+"Berpikirlah sebelum berbicara agar kamu tidak menyesal."],
+
+[4,"Apa Benar!","أَحَقًّا أَنَّ",
+"أَحَقًّا أَنَّكَ لَا تُحِبُّ السَّمَكَ!",
+"Apa benar kamu gak suka ikan?"],
+
+[5,"Apalagi","فَمَا بَالُكَ",
+"لَا أَمْلِكُ دَرَّاجَةً نَارِيَّةً فَمَا بَالُكَ بِالسَّيَّارَةِ.",
+"Sepeda motor saja saya tidak punya, apalagi mobil."],
+
+[6,"Apapun","مَهْمَا / أَيُّ شَيْءٍ",
+"أَيُّ شَيْءٍ تُرِيدُ أُوَفِّرُهُ لَكَ",
+"Apapun yang kamu inginkan, kuberikan untukmu."],
+
+[7,"Awalnya","فِي الْبِدَايَةِ",
+"فِي الْبِدَايَةِ كُنْتُ لَا أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ.",
+"Awalnya saya tidak suka bahasa Arab."],
+
+[8,"Ayo","هَلُمَّ",
+"هَلُمَّ يَا أَصْدِقَائِي نَذْهَبُ إِلَى الْمَدْرَسَةِ الْآنَ",
+"Ayo teman-temanku kita berangkat ke sekolah sekarang!"],
+
+[9,"Ayo Sini","تَعَالَ",
+"تَعَالْ اِجْلِسْ بِجَانِبِي",
+"Ayo sini, duduk di sampingku."],
+
+[10,"Bagaimana Kalau","مَا رَأْيُكَ / رَأْيُكُمْ أَنْ",
+"مَا رَأْيُكَ أَنْ نَذْهَبَ إِلَى شَاطِئِ الْبَحْرِ الْيَوْمَ؟",
+"Bagaimana kalau kita ke pantai hari ini?"],
+
+[11,"Bahkan","بَلْ",
+"كَلَامُهَا مِثْلُ الْعَسَلِ، بَلْ هُوَ أَحْلَى.",
+"Ucapannya semanis madu, bahkan lebih manis dari madu."],
+
+[12,"Barusan","لِلتَّوِّ",
+"قَابَلْتُ لِلتَّوِّ الْأُسْتَاذَ فِي مَكْتَبِهِ",
+"Barusan saya menghadap Ustadz di kantornya."],
+
+[13,"Bayangkan","تَخَيَّلْ لَوْ / أَنَّ",
+"تَخَيَّلْ لَوْ عِشْتَ قَبْلَ الْاِسْتِقْلَالِ",
+"Bayangkan seandainya kalian hidup sebelum kemerdekaan."],
+
+[14,"Bedanya","إِلَّا أَنَّ",
+"هَذَا الشَّرْبُ مِثْلُ الْقَهْوَةِ إِلَّا أَنَّهَا لَيْسَتْ مُرَّةً.",
+"Minuman ini seperti kopi. Bedanya, ini tidak pahit."],
+
+[15,"Begitu","مَا إِنْ ... حَتَّى",
+"مَا إِنْ وَصَلَ الْمُدِيرُ حَتَّى بَدَأَ الْاِجْتِمَاعُ.",
+"Begitu Pak Direktur datang, rapat dimulai."],
+
+[16,"Begitu Juga","وَكَذَلِكَ",
+"هُوَ يُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ وَكَذَلِكَ أَنَا.",
+"Dia suka bahasa Arab, begitu juga saya."],
+
+[17,"Belum Tentu","مِنَ الْمَشْكُوكِ",
+"مِنَ الْمَشْكُوكِ فِيهِ أَنَّهُ الَّذِي فَعَلَ ذَلِكَ",
+"Belum tentu dia yang melakukan itu."],
+
+[18,"Benarkah / Apa Benar","هَلْ حَقًّا",
+"هَلْ حَقًّا يَنْقَلِبُ الْكُرْهُ حُبًّا بَعْدَ الْفِرَاقِ؟",
+"Apa benar benci itu berubah menjadi cinta setelah berpisah?"],
+
+[19,"Salah Satunya","إِحْدَاهُنَّ",
+"هُنَاكَ أَرْبَعُ أَفْضَلِ نِسَاءِ العَالَمِ إِحْدَاهُنَّ مَرْيَمُ بِنْتُ عِمْرَانَ.",
+"Ada empat wanita termulia di bumi, salah satunya Maryam putri Imran."],
+
+[20,"Sama Dengan","يُسَاوِي",
+"شَهَادَةُ رَجُلٍ تُسَاوِي شَهَادَةَ امْرَأَتَيْنِ.",
+"Kesaksian seorang lelaki sama dengan kesaksian dua orang perempuan."],
+
+[21,"Sama Sekali","عَلَى الْإِطْلَاقِ",
+"فَرِيقُهُمْ لَا يَسْتَحِقُّ الْفَوْزَ عَلَى الْإِطْلَاقِ.",
+"Tim mereka sama sekali tidak pantas menang."],
+
+[22,"Sambil","بَاكِيًا",
+"قَصَّ عَلَيَّ قِصَّةَ حَيَاتِهِ بَاكِيًا.",
+"Dia menceritakan kisah hidupnya sambil menangis."],
+
+[23,"Sebaiknya","مِنَ الْمُسْتَحْسَنِ",
+"مِنَ الْمُسْتَحْسَنِ أَلَّا نُوَاصِلَ هَذَا الْجِدَالَ.",
+"Sebaiknya kita tidak meneruskan perdebatan ini."],
+
+[24,"Sebelum Ini","قَبْلَ هَذَا",
+"سَبَقَ أَنْ جِئْتُ هُنَا قَبْلَ هَذَا.",
+"Sebelum ini saya sudah pernah kesini."],
+
+[25,"Sebelum Itu","قَبْلَ ذَلِكَ",
+"يُمْكِنُ أَنْ تُشَارِكَ وَلَكِنْ قَبْلَ ذَلِكَ يَجِبُ أَنْ تُسَجِّلَ أَوَّلًا.",
+"Kamu boleh ikut, tapi sebelum itu kamu harus mendaftar dulu."],
+
+[26,"Sebelumnya","فِي وَقْتٍ سَابِقٍ",
+"فِي وَقْتٍ سَابِقٍ دَرَسْنَا الْعَرَبِيَّةَ بِطَرِيقَةٍ تَقْلِيدِيَّةٍ.",
+"Sebelumnya, kami belajar bahasa Arab dengan cara tradisional."],
+
+[27,"Sebenarnya","فِي الْحَقِيقَةِ",
+"مَا الَّذِي حَدَثَ فِي الْحَقِيقَةِ؟",
+"Apa yang sebenarnya terjadi?"],
+
+[28,"Sebentar Lagi","اِقْتَرَبَ أَنْ",
+"أَكْمِلُوا أَعْمَالَكُمْ، الْوَقْتُ اقْتَرَبَ أَنْ يَنْتَهِيَ.",
+"Rampungkan pekerjaan kalian, waktunya sebentar lagi habis."],
+
+[29,"Secepatnya","فِي أَسْرَعِ وَقْتٍ مُمْكِنٍ",
+"سَأُنْهِي هَذَا الْعَمَلَ فِي أَسْرَعِ وَقْتٍ مُمْكِنٍ.",
+"Saya akan menyelesaikan pekerjaan ini secepatnya."],
+
+[30,"Seharusnya","كَانَ يَجِبُ",
+"كَانَ يَجِبُ أَلَّا يَكُونَ هُوَ فِي الْمَرْكَزِ الْأَوَّلِ.",
+"Seharusnya, bukan dia yang juara satu."],
+
+[31,"Seharusnya Tidak","مِنَ الْمُفْتَرَضِ أَلَّا",
+"مِنَ الْمُفْتَرَضِ أَلَّا تَتَحَمَّلَ هَذَا مُنْفَرِدًا.",
+"Seharusnya kamu tidak menanggung ini sendirian."],
+
+[32,"Sejak Awal","مُنْذُ الْبِدَايَةِ",
+"لِمَاذَا لَمْ تَقُلْ ذَلِكَ مُنْذُ الْبِدَايَةِ؟",
+"Kenapa tidak kamu katakan itu sejak awal?"],
+
+[33,"Sejak Kapan","مُنْذُ مَتَى",
+"مُنْذُ مَتَى سَكَنْتَ فِي هَذِهِ الْمَدِينَةِ؟",
+"Sejak kapan kamu tinggal di kota ini?"],
+
+[34,"Sekali Lagi","مَرَّةً أُخْرَى",
+"لَا تَسْتَسْلِمْ حَاوِلْ مَرَّةً أُخْرَى.",
+"Jangan menyerah, cobalah sekali lagi."],
+
+[35,"Selagi","مَا دَامَ",
+"لَا تَقْلَقِي مَا دُمْتُ مَعَكِ.",
+"Jangan cemas selagi aku bersamamu."],
+
+[36,"Selain Itu","فَضْلًا عَنْ ذَلِكَ",
+"هِيَ امْرَأَةٌ جَمِيلَةٌ وَفَضْلًا عَنْ ذَلِكَ هِيَ مُتَدَيِّنَةٌ.",
+"Dia perempuan cantik, selain itu dia taat beragama."],
+
+[37,"Selalu","دَائِمًا",
+"أَنَا أَشْتَاقُ إِلَيْكِ دَائِمًا.",
+"Aku selalu merindukanmu."],
+
+[38,"Selama","دَامَ",
+"اِلْتَقَيْنَا بَعْدَ فِرَاقٍ دَامَ عَشْرَ سَنَوَاتٍ.",
+"Kami bertemu setelah berpisah selama sepuluh tahun."],
+
+[39,"Selamat Datang","مَرْحَبًا بِـ",
+"مَرْحَبًا بِأُسْتَاذِنَا الْفَاضِلِ فِي هَذِهِ الْمَجْمُوعَةِ.",
+"Selamat datang Ustad kita yang mulia di grup ini."],
+
+[40,"Selamat Tinggal","وَدَاعًا",
+"وَدَاعًا أَيَّتُهَا الْأَيَّامُ الدَّامِعَةُ.",
+"Selamat tinggal hari-hari yang penuh air mata."],
+
+[41,"Semakin","آخِذٌ فِي",
+"هَذِهِ الْجَامِعَةُ آخِذَةٌ فِي التَّقَدُّمِ رَغْمَ أَنَّهَا جَدِيدَةٌ.",
+"Kampus ini semakin maju walaupun masih baru."],
+
+[42,"Sengaja","عَنْ قَصْدٍ",
+"هَلْ فَعَلْتَ هَذَا عَنْ قَصْدٍ؟",
+"Apa kamu melakukan itu dengan sengaja?"],
+
+[43,"Seperti Biasa","كَمَا جَرَتِ الْعَادَةُ",
+"كَمَا جَرَتِ الْعَادَةُ الْمُسْلِمُونَ يَتَبَادَلُونَ الزِّيَارَةَ يَوْمَ الْعِيدِ.",
+"Seperti biasa, kaum muslimin saling berkunjung di hari raya."],
+
+[44,"Seperti Ini","مِثْلُ هَذَا",
+"الْمُشْكِلَةُ مِثْلُ هَذِهِ لَا يُمْكِنُ حَلُّهَا فِي مُدَّةٍ قَصِيرَةٍ.",
+"Masalah seperti ini tidak mungkin diselesaikan dalam waktu singkat."],
+
+[45,"Sepertinya","يَبْدُو أَنَّ",
+"يَبْدُو أَنَّهُمَا لَمْ يَعُودَا يَتَحَابَّا.",
+"Sepertinya, mereka berdua tidak saling mencintai."],
+
+[46,"Sepertinya Iya","كَأَنَّهُ هُوَ",
+"هَلْ هَذِهِ سَيَّارَةُ أُسْتَاذِنَا؟ كَأَنَّهَا هِيَ.",
+"Apakah ini mobil ustadz kita? Sepertinya iya."],
+
+[47,"Sering","كَثِيرًا",
+"نَزَلَ الْمَطَرُ كَثِيرًا هَذِهِ الْأَيَّامَ.",
+"Hari-hari ini sering turun hujan."],
+
+[48,"Sesuai","حَسَبَ",
+"كُلُّ امْرِئٍ يَعْمَلُ حَسَبَ قُدْرَتِهِ.",
+"Tiap orang bekerja sesuai kemampuannya."],
+
+[49,"Sesuka Hati","كَمَا شَاءَ",
+"أُكْتُبُوا التَّعْلِيقَ عَلَى هَذَا الْمَنْشُورِ كَمَا تَشَاؤُونَ.",
+"Tulis komentar atas postingan ini sesuka hati kalian."],
+
+[50,"Setelah Ini","بَعْدَ الْآنَ",
+"بَعْدَ الْآنَ سَأَتَفَرَّغُ لِحِفْظِ الْقُرْآنِ.",
+"Setelah ini, saya akan fokus menghafal Al-Qur'an."],
+
+[51,"Setelah Itu","بَعْدَ ذَلِكَ",
+"وَمَاذَا بَعْدَ ذَلِكَ؟",
+"Lalu apa setelah itu?"],
+
+[52,"Setuju / Sepakat","اِتَّفَقَ عَلَى",
+"اِتَّفَقْنَا جَمِيعًا عَلَى أَنَّ تَعَلُّمَ الْعَرَبِيَّةِ وَاجِبٌ.",
+"Kita semua sepakat bahwa belajar bahasa Arab itu wajib."],
+
+[53,"Siap","حَاضِرٌ",
+"لَا تَتَأَخَّرْ مَرَّةً أُخْرَى! حَاضِرٌ.",
+"Jangan Terlambat Lagi! Siap."],
+
+[54,"Siapa Lagi","مَنْ أَيْضًا",
+"مَنْ أَيْضًا الَّذِي لَا يَسْتَطِيعُ الْحُضُورَ غَدًا؟",
+"Siapa Lagi Yang Tidak Bisa Hadir Besok?"],
+
+[55,"Siapapun","أَيًّا كَانَ",
+"أَيًّا كَانَ مُشْرِفُكَ، عَلَيْكَ احْتِرَامُهُ.",
+"Siapapun pembimbingmu, kamu harus menghormatinya."],
+
+[56,"Siapa Tahu","مَنْ يَدْرِي",
+"مَنْ يَدْرِي رُبَّمَا هُوَ مَوْجُودٌ فِي بَيْتِهِ.",
+"Siapa tahu dia ada di rumahnya."],
+
+[57,"Suatu Hari / Saat","يَوْمًا مَا",
+"سَيَنْدَمُ يَوْمًا مَا عَلَى مَا فَعَلَ بِي.",
+"Suatu hari kamu akan menyesal telah jahat sama aku."],
+
+[58,"Sudah Tentu","طَبْعًا",
+"هَذَا الْفِرَاقُ، طَبْعًا، يُحْزِنُنَا جَمِيعًا.",
+"Sudah tentu perpisahan ini membuat kita semua sedih."],
+
+[59,"Sudah Waktunya","حَانَ الْوَقْتُ",
+"حَانَ الْوَقْتُ لِتَتَزَوَّجَ وَتَعِيشَ مُسْتَقِلًّا.",
+"Sudah waktunya kamu menikah dan hidup mandiri."],
+
+[60,"Tidak Ada Artinya","لَا مَعْنَى لَهُ",
+"بِدُونِكَ بِجَانِبِي هَذِهِ الْفَرْحَةُ لَا مَعْنَى لَهَا",
+"Tanpamu di sisiku, kesenangan ini tidak ada artinya."],
+
+[61,"Tidak Perlu / Tidak Usah","لَا دَاعِيَ لِـ",
+"لَا دَاعِيَ لِلْقَلَقِ يَا أُمِّي، لَمْ أَعُدْ طِفْلًا",
+"Tidak usah khawatir, Bu, aku bukan anak kecil lagi."],
+
+[62,"Tidak Mungkin","مِنْ غَيْرِ الْمُحْتَمَلِ",
+"هُوَ طَالِبٌ ذَكِيٌّ فَمِنْ غَيْرِ الْمُحْتَمَلِ أَنَّهُ رَاسِبٌ",
+"Dia siswa pintar, tidak mungkin dia tidak lulus."],
+
+[63,"Tidak Penting","لَا يَهُمُّ",
+"الصِّدْقُ لَا يَهُمُّ هَكَذَا يَظُنُّ بَعْضُ النَّاسِ",
+"Kejujuran tidak penting, begitu anggapan sebagian orang."],
+
+[64,"Tidak Harus / Perlu","لَا يَلْزَمُ",
+"لِإِجَادَةِ الْعَرَبِيَّةِ لَا يَلْزَمُ أَنْ تَذْهَبَ إِلَى الدُّوَلِ الْعَرَبِيَّةِ",
+"Untuk menguasai bahasa Arab, kamu tak harus pergi ke Arab."],
+
+[65,"Tidak Pernah","مَا سَبَقَ أَنْ",
+"مَا سَبَقَ أَنْ عَادَ مَنْ مَاتَ إِلَى الْحَيَاةِ",
+"Tak pernah ada orang yang sudah mati kembali hidup."],
+
+[66,"Umumnya","عُمُومًا",
+"الَّذِينَ يُدَمِّنُونَ التَّدْخِينَ عُمُومًا يُدْمِنُونَ الْقَهْوَةَ أَيْضًا",
+"Pecandu rokok biasanya juga pecandu kopi"],
+
+[67,"Untuk Pertama Kali","لِلْمَرَّةِ الْأُولَى",
+"لِلْمَرَّةِ الْأُولَى فِي حَيَاتِي أَحْبَبْتُ رَجُلًا وَلَمْ أَرَهُ",
+"Untuk pertama dalam hidupku aku mencintai seorang lelaki padahal belum melihatnya."],
+
+[68,"Untuk Sementara Waktu","لِبَعْضِ الْوَقْتِ",
+"تَمَّ إِغْلَاقُ أَبْوَابِ الْمَسَاجِدِ لِبَعْضِ الْوَقْتِ",
+"Masjid-masjid untuk sementara ditutup."],
+
+[69,"Untungnya","لِحُسْنِ الْحَظِّ",
+"لِحُسْنِ الْحَظِّ الْأُسْتَاذُ سَمَحَنِي بِالدُّخُولِ رَغْمَ تَأَخُّرِي",
+"Untungnya, Ustadz mengizinkanku masuk walaupun aku terlambat."],
+
+[70,"Wajar","مِنَ الطَّبِيعِيِّ",
+"هَذِهِ خِبْرَتُكَ الْأُولَى فَمِنَ الطَّبِيعِيِّ أَنْ تَقْلَقَ",
+"Ini pengalaman pertamamu, wajar kalau kamu merasa cemas."],
+
+[71,"Yang Katanya","قِيلَ إِنَّ",
+"سَنَتَعَشَّى فِي مَطْعَمٍ قِيلَ إِنَّهُ أَكْبَرُ مَطْعَمٍ هُنَا",
+"Kita akan makan malam di restoran yang katanya terbesar di sini."],
+
+[72,"Yang Penting Bukan...Tapi","الْمُهِمُّ لَيْسَ.. وَلَكِنْ",
+"الْمُهِمُّ لَيْسَ الْأَقْوَالَ بَلِ الْأَفْعَالَ",
+"Yang penting bukan kata-kata, tapi aksi nyata."],
+
+[73,"Yang Mau Di....","الْمُرَادُ",
+"اِبْدَأْ يَوْمَكَ بِتَحْدِيدِ الْأَشْيَاءِ الْمُرَادُ فِعْلُهَا ذَاكَ الْيَوْمَ",
+"Mulailah harimu dengan menentukan apa-apa yang mau dilakukan di hari itu."],
+
+[74,"Yang Pertama","أَوَّلُ مَنْ",
+"هُوَ أَوَّلُ مَنْ أَوْقَعَنِي فِي الْحُبِّ",
+"Dia adalah yang pertama yang membuatku jatuh cinta."]
+
+];
+
+
+/* =====================================================
+   PINDAH MENU
+===================================================== */
+
+function showSection(id){
+
+  document.querySelectorAll("section").forEach(section=>{
+    section.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* =====================================================
+   EFEK HATI SETIAP BUTTON
+===================================================== */
+
+function makeHearts(button){
+
+  const rect=button.getBoundingClientRect();
+
+  for(let i=0;i<5;i++){
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+    heart.innerHTML=["❤️","💚","💗","💖","💕"][Math.floor(Math.random()*5)];
+
+    heart.style.left=
+      (rect.left+rect.width/2+(Math.random()*70-35))+"px";
+
+    heart.style.top=
+      (rect.top+rect.height/2)+"px";
+
+    heart.style.setProperty(
+      "--x",
+      (Math.random()*100-50)+"px"
+    );
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },1100);
+  }
+}
+
+document.addEventListener("click",function(e){
+
+  const button=e.target.closest("button");
+
+  if(button){
+    makeHearts(button);
+  }
+
+});
+
+
+/* =====================================================
+   LALARAN
+===================================================== */
+
+let larIndex=0;
+let revealed=false;
+
+function renderLar(){
+
+  const data=DATA[larIndex];
+
+  document.getElementById("larCounter").textContent=
+    `${data[0]} / ${DATA.length}`;
+
+  /* HANYA USLUB ARAB YANG DITAMPILKAN */
+
+  document.getElementById("larUslub").textContent=data[2];
+
+  document.getElementById("larAnswerText").textContent=data[1];
+
+  document.getElementById("larAnswer").classList.remove("show");
+
+  document.getElementById("revealBtn").textContent=
+    "👀 Lihat Jawaban";
+
+  revealed=false;
+}
+
+function revealAnswer(){
+
+  const answer=document.getElementById("larAnswer");
+  const button=document.getElementById("revealBtn");
+
+  if(!revealed){
+
+    answer.classList.add("show");
+    button.textContent="🙈 Sembunyikan Jawaban";
+    revealed=true;
+
+  }else{
+
+    answer.classList.remove("show");
+    button.textContent="👀 Lihat Jawaban";
+    revealed=false;
+
+  }
+}
+
+function nextLar(){
+
+  larIndex++;
+
+  if(larIndex>=DATA.length){
+    larIndex=0;
+  }
+
+  renderLar();
+}
+
+function prevLar(){
+
+  larIndex--;
+
+  if(larIndex<0){
+    larIndex=DATA.length-1;
+  }
+
+  renderLar();
+}
+
+
+/* =====================================================
+   MATERI
+===================================================== */
+
+function renderMateri(){
+
+  const grid=document.getElementById("materialGrid");
+
+  grid.innerHTML="";
+
+  DATA.forEach(data=>{
+
+    const card=document.createElement("div");
+
+    card.className="glass material-card";
+
+    card.innerHTML=`
+
+      <div class="number">USLUB ${data[0]}</div>
+
+      <div class="material-title">
+        ${data[1]}
+      </div>
+
+      <div class="arabic">
+        ${data[2]}
+      </div>
+
+      <div class="example">
+        ${data[3]}
+      </div>
+
+      <div class="meaning">
+        🇮🇩 ${data[4]}
+      </div>
+
+    `;
+
+    grid.appendChild(card);
+
+  });
+}
+
+
+/* =====================================================
+   KUIS
+===================================================== */
+
+let quizIndex=0;
+let quizAnswered=false;
+let score=0;
+
+
+/* Acak array */
+
+function shuffle(array){
+
+  return [...array].sort(()=>{
+    return Math.random()-0.5;
+  });
+
+}
+
+
+/* Buat 3 pilihan */
+
+function getOptions(correct){
+
+  const others=DATA
+    .filter(item=>item[4]!==correct)
+    .map(item=>item[4]);
+
+  const randomOthers=shuffle(others).slice(0,2);
+
+  return shuffle([
+    correct,
+    ...randomOthers
+  ]);
+
+}
+
+
+function renderQuiz(){
+
+  const data=DATA[quizIndex];
+
+  quizAnswered=false;
+
+  document.getElementById("quizNumber").textContent=
+    `Soal ${quizIndex+1} / ${DATA.length}`;
+
+  document.getElementById("quizArabic").textContent=
+    data[3];
+
+  document.getElementById("quizResult").textContent="";
+
+  const options=getOptions(data[4]);
+
+  const container=document.getElementById("options");
+
+  container.innerHTML="";
+
+  options.forEach((option,index)=>{
+
+    const button=document.createElement("button");
+
+    button.className="option";
+
+    button.textContent=
+      `${String.fromCharCode(65+index)}. ${option}`;
+
+    button.onclick=()=>{
+      answerQuiz(button,option,data[4]);
+    };
+
+    container.appendChild(button);
+
+  });
+
+}
+
+
+function answerQuiz(button,selected,correct){
+
+  if(quizAnswered)return;
+
+  quizAnswered=true;
+
+  const buttons=document.querySelectorAll(".option");
+
+  buttons.forEach(btn=>{
+
+    const text=btn.textContent.substring(3);
+
+    if(text===correct){
+      btn.classList.add("correct");
+    }
+
+  });
+
+  if(selected===correct){
+
+    score++;
+
+    document.getElementById("quizResult").textContent=
+      "✅ Benar!";
+
+    button.classList.add("correct");
+
+  }else{
+
+    document.getElementById("quizResult").textContent=
+      "❌ Kurang tepat. Jawaban yang benar sudah ditandai.";
+
+    button.classList.add("wrong");
+
+  }
+
+}
+
+
+function nextQuiz(){
+
+  if(quizIndex<DATA.length-1){
+
+    quizIndex++;
+    renderQuiz();
+
+  }else{
+
+    document.getElementById("quizResult").textContent=
+      `🎉 Kuis selesai! Skor kamu: ${score} / ${DATA.length}`;
+
+  }
+
+}
+
+
+function prevQuiz(){
+
+  if(quizIndex>0){
+
+    quizIndex--;
+    renderQuiz();
+
+  }
+
+}
+
+
+/* =====================================================
+   MUSIK
+===================================================== */
+
+const music=document.getElementById("bgMusic");
+
+let musicPlaying=false;
+
+function toggleMusic(){
+
+  if(!musicPlaying){
+
+    music.play()
+      .then(()=>{
+
+        musicPlaying=true;
+
+        document.getElementById("musicBtn").textContent=
+          "🔊 Musik ON";
+
+        document.getElementById("musicFloating").textContent=
+          "🔊 Musik ON";
+
+      })
+      .catch(()=>{
+
+        alert("Tekan tombol musik sekali lagi untuk memulai musik.");
+
+      });
+
+  }else{
+
+    music.pause();
+
+    musicPlaying=false;
+
+    document.getElementById("musicBtn").textContent=
+      "🎵 Musik";
+
+    document.getElementById("musicFloating").textContent=
+      "🎵 Musik";
+
+  }
+
+}
+
+
+/* =====================================================
+   EFEK HUJAN
+===================================================== */
+
+function makeRain(){
+
+  const rain=document.getElementById("rain");
+
+  for(let i=0;i<90;i++){
+
+    const drop=document.createElement("div");
+
+    drop.className="drop";
+
+    drop.style.left=
+      Math.random()*100+"%";
+
+    drop.style.height=
+      (10+Math.random()*25)+"px";
+
+    drop.style.opacity=
+      .2+Math.random()*.5;
+
+    drop.style.animationDuration=
+      (0.5+Math.random()*1)+"s";
+
+    drop.style.animationDelay=
+      Math.random()*2+"s";
+
+    rain.appendChild(drop);
+
+  }
+
+}
+
+
+/* =====================================================
+   MULAI
+===================================================== */
+
+makeRain();
+renderLar();
+renderMateri();
+renderQuiz();
+
+</script>
+
+</body>
+</html>
